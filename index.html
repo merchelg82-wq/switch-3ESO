@@ -2,8 +2,8 @@
 (async()=>{
 try{
 const unpack=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
-const response=await fetch('./game-assets-45df32696e.bin');
-if(!response.ok||!response.body)throw new Error('Could not load game-assets-45df32696e.bin.');
+const response=await fetch('./game-assets-b8b1fa05f7.bin');
+if(!response.ok||!response.body)throw new Error('Could not load game-assets-b8b1fa05f7.bin.');
 const stream=response.body.pipeThrough(new DecompressionStream('gzip'));
 const files=JSON.parse(await new Response(stream).text());
 const urls={},text={};
