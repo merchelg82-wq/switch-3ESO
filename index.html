@@ -2,12 +2,12 @@
 (async()=>{
 try{
 const unpack=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
-const response=await fetch('./game-assets.bin?v=27400e146dd3c350952140d26ede38c862eed66a928cfeb888925e7ab4b7a5b5', {cache:'no-store'});
+const response=await fetch('./game-assets.bin?v=0ccd5aa08a41d64b2ee406422e314fa6263c363ac02c5e7e1c0e4e6bd6fdf002', {cache:'no-store'});
 if(!response.ok||!response.body)throw new Error('Could not load game-assets.bin.');
 const packed=await response.arrayBuffer();
 if(globalThis.crypto?.subtle){
  const digest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',packed)),b=>b.toString(16).padStart(2,'0')).join('');
- if(digest!=='27400e146dd3c350952140d26ede38c862eed66a928cfeb888925e7ab4b7a5b5')throw new Error('The two game files are from different updates. Upload index.html and game-assets.bin from the same ZIP.');
+ if(digest!=='0ccd5aa08a41d64b2ee406422e314fa6263c363ac02c5e7e1c0e4e6bd6fdf002')throw new Error('The two game files are from different updates. Upload index.html and game-assets.bin from the same ZIP.');
 }
 const stream=new Blob([packed]).stream().pipeThrough(new DecompressionStream('gzip'));
 const files=JSON.parse(await new Response(stream).text());
@@ -46,7 +46,7 @@ arcadeFrameURL=function(s){
 };
 window.__portableReady=true;
 document.documentElement.dataset.edition='github-portable';
-document.documentElement.dataset.sourceCommit='d7af2e2acf7348641354155b57b5eb3d61adc958';
+document.documentElement.dataset.sourceCommit='ea1810ab64f0d4df3535eccfc823716459e3092e';
 }catch(error){document.body.textContent='The game could not load. Please use a current Chrome, Edge, Firefox or Safari browser. '+error.message;console.error(error)}
 })();
 </script></body></html>
